@@ -8,4 +8,8 @@ class Categoria {
     static hasMany = [contactos: Contacto]
     static constraints = {
     }
+
+    String toString() {
+        return this.nombre;
+    }
 }

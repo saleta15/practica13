@@ -10,6 +10,12 @@
         <div class="panel panel-default" >
 
             <div class="panel-body" >
+                <g:if test="${flash.message}">
+                    <div class="alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Aviso:</strong> ${flash.message}
+                    </div>
+                </g:if>
         <a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>

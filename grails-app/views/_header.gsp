@@ -11,9 +11,17 @@
                         <ul class="dropdown-menu">
                             <li><g:link controller="usuario" action="create">Crear Usuario</g:link> </li>
                             <li><g:link controller="usuario" action="asignar_departamento">Asignar Departamento</g:link> </li>
-                            </a></li>
+
                         </ul>
                     </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contactos <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><g:link controller="contacto" action="create">Crear Contacto</g:link> </li>
+                        <li><g:link controller="contacto" action="index">Ver Contactos</g:link> </li>
+
+                    </ul>
+                </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><g:link controller="usuario" action="login">Iniciar Sesion</g:link></li>

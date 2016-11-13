@@ -22,10 +22,10 @@
             <div id="list-usuario" class="content scaffold-list" role="main">
 
                 <br>
-                <f:table  collection="${departamentoList}" />
+                <f:table  collection="${categoriaList}" />
 
                 <div class="pagination">
-                    <g:paginate total="${usuarioCount ?: 0}" />
+                    <g:paginate total="${categoriaCount ?: 0}" />
                 </div>
             </div>
 

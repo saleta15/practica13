@@ -15,4 +15,8 @@ class Usuario {
         username(unique: true)
         departamento nullable: true
     }
+
+    String toString() {
+        return this.nombre;
+    }
 }

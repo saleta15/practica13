@@ -20,7 +20,6 @@ class UsuarioService {
             admin.password = "1234"
             admin.esAdmin = true
             admin.save()
-            print admin.errors
             println "usuario creado"
         }
     }

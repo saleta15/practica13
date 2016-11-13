@@ -114,6 +114,7 @@ class UsuarioController {
 
         String password = params.get("password")
         if(usuarioService.autenticar(usuario,password)){
+            flash.message = null
             session.setAttribute("usuario", Usuario.findByUsername(usuario))
             redirect(action: "index")
         }

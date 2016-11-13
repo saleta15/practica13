@@ -5,12 +5,13 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ContactoController {
-
+    def contactoService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Contacto.list(params), model:[contactoCount: Contacto.count()]
+    def index() {
+      def usuario = Usuario.findById(session.getAttribute("usuario").id)
+      render(view: "index",model: [contactos: Contacto.listOrderById(usuario.departamento.contactos.toSpreadMap())])
+
     }
 
     def show(Contacto contacto) {
@@ -22,28 +23,26 @@ class ContactoController {
     }
 
     @Transactional
-    def save(Contacto contacto) {
-        if (contacto == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
+    def guardar(int usuario,int categoria, Contacto contacto) {
 
         if (contacto.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond contacto.errors, view:'create'
+            respond contacto, view:'create'
             return
         }
-
-        contacto.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'contacto.label', default: 'Contacto'), contacto.id])
-                redirect contacto
-            }
-            '*' { respond contacto, [status: CREATED] }
+        def status = contactoService.crearContacto(contacto,usuario,categoria)
+        if (status){
+            redirect action: "index"
+            if(status == -1)
+                flash.message = "El contacto introducido ya existia, pero fue agregado a tu departamento."
         }
+
+        else{
+            respond contacto, view:'create'
+            flash.message = "Este contacto ya fue registrado en su departamento."
+        }
+
+
     }
 
     def edit(Contacto contacto) {

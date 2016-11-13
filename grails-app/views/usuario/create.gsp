@@ -36,6 +36,5 @@
     </div>
 
 </div>
-<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

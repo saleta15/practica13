@@ -1,28 +1,52 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'contacto.label', default: 'Contacto')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#list-contacto" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-contacto" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${contactoList}" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Bootstrap -->
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login Customizado.....</title>
+</head>
+<body>
+<g:render template="../header"/>
+<div class="container" id="contenedorCrearUsuario">
 
-            <div class="pagination">
-                <g:paginate total="${contactoCount ?: 0}" />
-            </div>
+    <div class = "panel panel-default">
+        <div class = "panel-body">
+            <h1>Contactos</h1>
+            <hr>
+            <g:if test="${flash.message}">
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Aviso:</strong> ${flash.message}
+                </div>
+            </g:if>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Movil</th>
+                </tr>
+                </thead>
+                <g:each var="contacto" in="${contactos}">
+                    <tr>
+                        <td><g:link params="[contacto: contacto.id]">${contacto.nombre} ${contacto.apellido}</g:link></td>
+                        <td>${contacto.email}</td>
+                        <td>
+                            ${contacto.telefono}
+
+                        </td>
+                        <td>${contacto.movil}</td>
+
+                    </tr>
+                </g:each>
+
+                </tbody>
+            </table>
+            <br>
         </div>
-    </body>
+    </div>
+
+</div>
+</body>
 </html>

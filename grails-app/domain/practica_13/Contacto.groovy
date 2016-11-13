@@ -8,8 +8,17 @@ class Contacto {
     String direccion
     String puestoTrabajo
     String movil
-    static belongsTo = Departamento
+
+    String modificadoPor
+    Date dateCreated
+    Date lastUpdated
+    static belongsTo =  [categoria: Categoria]
     static hasMany = [departamentos:Departamento]
     static constraints = {
+        email(email: true)
+    }
+
+    String toString() {
+        return this.nombre + " " + this.apellido;
     }
 }
