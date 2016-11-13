@@ -9,6 +9,7 @@ class Departamento {
     Date dateCreated
     Date lastUpdated
 
+
     static constraints = {
     }
 }

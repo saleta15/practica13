@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'categoria.label', default: 'Categoria')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#list-categoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-categoria" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${categoriaList}" />
+<head>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-            <div class="pagination">
-                <g:paginate total="${categoriaCount ?: 0}" />
+<g:render template="../header" />
+<div class="container">
+    <div class="panel panel-default" >
+
+        <div class="panel-body" >
+            <h1>Categorias</h1>
+            <hr>
+            <g:if test="${flash.message}">
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Exito!</strong> ${flash.message}
+                </div>
+            </g:if>
+            <g:link class="btn btn-success" action="create">Crear</g:link>
+            <div id="list-usuario" class="content scaffold-list" role="main">
+
+                <br>
+                <f:table  collection="${departamentoList}" />
+
+                <div class="pagination">
+                    <g:paginate total="${usuarioCount ?: 0}" />
+                </div>
             </div>
-        </div>
-    </body>
+
+        </div></div></div>
+<script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $("table").addClass("table table-striped table-bordered");
+
+</script>
+</body>
 </html>

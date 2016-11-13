@@ -22,6 +22,7 @@
                         </g:hasErrors>
                         <g:form resource="${this.departamento}" method="PUT">
                             <g:hiddenField name="version" value="${this.departamento?.version}" />
+                            <g:hiddenField name="modificadoPor" value="${session.getAttribute("usuario").nombre}"/>
                             <labe>Nombre</labe>
                             <g:textField class="form-control" name="nombre" value="${this.departamento?.nombre}"/>
                             <br>

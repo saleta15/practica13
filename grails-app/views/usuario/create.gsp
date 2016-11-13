@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#create-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="create-usuario" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.usuario}">
-            <ul class="errors" role="alert">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Bootstrap -->
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login Customizado.....</title>
+</head>
+<body>
+<g:render template="../header"/>
+<div class="container" id="contenedorCrearUsuario">
+
+    <div class = "panel panel-default">
+        <div class = "panel-body">
+            <h1>Nuevo Usuario</h1>
+            <hr>
+
                 <g:eachError bean="${this.usuario}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error</strong> <g:message error="${error}"/>
+                    </div>
                 </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form action="save">
-                <fieldset class="form">
-                    <f:all bean="usuario"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-                </fieldset>
+
+            <g:form controller="usuario" action="save">
+                <label>Nombre: </label>
+                <g:hiddenField name="modificadoPor" value="${session.getAttribute("usuario").nombre}"/>
+                <g:textField name="nombre" class="form-control"/><br/>
+                <label>Usuario: </label>
+                <g:textField name="username" class="form-control"/><br/>
+                <label>Password </label>
+                <g:textField name="password" class="form-control"/><br/>
+                <g:actionSubmit value="Guardar" class="btn btn-info"/>
             </g:form>
+            <br>
         </div>
-    </body>
+    </div>
+
+</div>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
 </html>

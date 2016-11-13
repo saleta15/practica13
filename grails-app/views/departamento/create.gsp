@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'departamento.label', default: 'Departamento')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <a href="#create-departamento" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
+    <g:render template="../header" />
+    <div class="container">
+        <div class="panel panel-default" >
+
+            <div class="panel-body" >
+
         <div id="create-departamento" class="content scaffold-create" role="main">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Exito!</strong> ${flash.message}
+                </div>
             </g:if>
             <g:hasErrors bean="${this.departamento}">
             <ul class="errors" role="alert">
@@ -26,13 +28,14 @@
             </ul>
             </g:hasErrors>
             <g:form action="save">
-                <fieldset class="form">
-                    <f:all bean="departamento"/>
-                </fieldset>
+                <label>Nombre:</label>
+                <g:hiddenField name="modificadoPor" value="${session.getAttribute("usuario").nombre}"/>
+                <g:textField class="form-control" name="nombre" />
+                <br>
                 <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:submitButton name="create" class="btn btn-success" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
-        </div>
+        </div></div></div></div>
     </body>
 </html>

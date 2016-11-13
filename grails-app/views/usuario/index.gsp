@@ -32,7 +32,7 @@
                 </div></div></div>
     <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
     <script>
-        $("table").addClass("table table-striped");
+        $("table").addClass("table table-striped table-bordered");
 
     </script>
     </body>

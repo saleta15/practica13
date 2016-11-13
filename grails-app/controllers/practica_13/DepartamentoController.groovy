@@ -18,7 +18,8 @@ class DepartamentoController {
     }
 
     def create() {
-        respond new Departamento(params)
+        def departamento = new Departamento(params)
+        respond departamento
     }
 
     @Transactional
@@ -29,6 +30,7 @@ class DepartamentoController {
             return
         }
 
+        println departamento.modificadoPor
         if (departamento.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond departamento.errors, view:'create'

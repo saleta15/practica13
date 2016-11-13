@@ -1,10 +1,13 @@
 package practica_13
 
+import org.springframework.beans.factory.annotation.Autowired
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class UsuarioController {
+    def usuarioService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -22,28 +25,24 @@ class UsuarioController {
     }
 
     @Transactional
-    def save(Usuario usuario) {
+    def guardar(Usuario usuario) {
+
         if (usuario == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
-
+        usuario.modificadoPor = session.getAttribute("usuario").nombre
         if (usuario.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond usuario.errors, view:'create'
+            println usuario.errors
             return
         }
 
-        usuario.save flush:true
+        usuario.save()
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])
-                redirect usuario
-            }
-            '*' { respond usuario, [status: CREATED] }
-        }
+        redirect(uri:"/")
     }
 
     def edit(Usuario usuario) {
@@ -103,5 +102,36 @@ class UsuarioController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def login(){
+
+    }
+
+    def autenticar(){
+
+        String usuario = params.get("username")
+
+        String password = params.get("password")
+        if(usuarioService.autenticar(usuario,password)){
+            session.setAttribute("usuario", Usuario.findByUsername(usuario))
+            redirect(action: "index")
+        }
+        else
+            redirect(action: "login")
+            flash.message = "Credenciales no validas"
+    }
+
+    def asignar_departamento(){
+
+    }
+
+    def asignar(int departamento, int usuario){
+        def departamento1 = Departamento.findById(departamento)
+        def usuario1 = Usuario.findById (usuario)
+        usuario1.departamento = departamento1
+        usuario1.save()
+        redirect (action: "asignar_departamento")
+
     }
 }
