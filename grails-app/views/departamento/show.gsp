@@ -12,6 +12,7 @@
         <div class="panel-body" >
             <div id="edit-departamento" class="content scaffold-edit" role="main">
                 <h1>Ver departamento</h1>
+                <hr>
                 <g:if test="${flash.message}">
                     <div class="alert alert-success">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -25,8 +26,10 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
+
                 <g:form resource="${this.departamento}" method="DELETE">
                     <div class="col-md-12 col-lg-12 ">
+                        <g:link action="index">Volver</g:link>
                         <table class="table table-user-information table-bordered">
                             <tbody>
                             <tr>

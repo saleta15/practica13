@@ -5,6 +5,15 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class CategoriaController {
+    def beforeInterceptor = [action: this.&auth]
+
+    private def auth(){
+        if(session.usuario && session.usuario.esAdmin){
+            return true;
+        }
+        redirect controller:"usuario", action: "login"
+        return false
+    }
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 

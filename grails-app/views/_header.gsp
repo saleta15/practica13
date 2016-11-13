@@ -6,29 +6,45 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><g:link controller="usuario" action="create">Crear Usuario</g:link> </li>
-                            <li><g:link controller="usuario" action="asignar_departamento">Asignar Departamento</g:link> </li>
+                    <g:if test="${session.getAttribute("usuario")}">
+                        <g:if test="${session.getAttribute("usuario").esAdmin}">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administracion <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><g:link controller="usuario" action="create">Crear Usuario</g:link> </li>
+                                    <li><g:link controller="usuario" action="asignar_departamento">Asignar Departamento</g:link> </li>
+                                    <li><g:link controller="departamento" action="index">Administrar Departamentos</g:link> </li>
+                                    <li><g:link controller="categoria" action="index">Administrar Categorias</g:link> </li>
 
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contactos <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><g:link controller="contacto" action="create">Crear Contacto</g:link> </li>
-                        <li><g:link controller="contacto" action="index">Ver Contactos</g:link> </li>
+                                </ul>
+                            </li>
+                        </g:if>
+                    </g:if>
 
-                    </ul>
-                </li>
+                    <g:if test="${session.getAttribute("usuario")}">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contactos <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><g:link controller="contacto" action="create">Crear Contacto</g:link> </li>
+                                <li><g:link controller="contacto" action="index">Ver Contactos</g:link> </li>
+
+                            </ul>
+                        </li>
+                    </g:if>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><g:link controller="usuario" action="login">Iniciar Sesion</g:link></li>
-                        <li>  <form action="/cerrarsesion/" method="POST" class="form-signin">
-                            <button style="border-radius: 30px; background-color:transparent; border: snow; margin-top: 13px;  " type="submit">Cerrar Sesi&oacute;n</button>
-                        </form>
-                        </li>
+                    <g:if test="${session.getAttribute("usuario")}">
+                        <li><g:link controller="usuario" action="cerrar_sesion">Cerrar Sesion</g:link></li>
+
+                    </g:if>
+                    <g:else>
+                        <li><g:link controller="usuario" action="login">Iniciar Sesion</g:link></li>
+                    </g:else>
+
+
+
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

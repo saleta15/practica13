@@ -113,15 +113,23 @@ class UsuarioController {
         String usuario = params.get("username")
 
         String password = params.get("password")
+        println "fuck"
         if(usuarioService.autenticar(usuario,password)){
-            flash.message = null
             session.setAttribute("usuario", Usuario.findByUsername(usuario))
-            redirect(action: "index")
+            redirect(url:"/")
         }
-        else
+        else{
             redirect(action: "login")
             flash.message = "Credenciales no validas"
+        }
+
     }
+
+    def cerrar_sesion(){
+        session.invalidate()
+        redirect (action: "login")
+    }
+
 
     def asignar_departamento(){
 

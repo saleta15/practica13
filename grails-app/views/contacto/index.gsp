@@ -30,7 +30,7 @@
                 </thead>
                 <g:each var="contacto" in="${contactos}">
                     <tr>
-                        <td><g:link params="[contacto: contacto.id]">${contacto.nombre} ${contacto.apellido}</g:link></td>
+                        <td><g:link url="show/${contacto.id}"  params="[contacto: contacto.id]">${contacto.nombre} ${contacto.apellido}</g:link></td>
                         <td>${contacto.email}</td>
                         <td>
                             ${contacto.telefono}

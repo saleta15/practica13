@@ -10,7 +10,7 @@ class ContactoController {
 
     def index() {
       def usuario = Usuario.findById(session.getAttribute("usuario").id)
-      render(view: "index",model: [contactos: Contacto.listOrderById(usuario.departamento.contactos.toSpreadMap())])
+      render(view: "index",model: [contactos: usuario.departamento.contactos])
 
     }
 
