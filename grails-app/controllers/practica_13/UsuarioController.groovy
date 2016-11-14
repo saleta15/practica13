@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UsuarioController {
     def usuarioService
+    def sessionFactory
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -106,6 +107,7 @@ class UsuarioController {
 
     def login(){
 
+
     }
 
     def autenticar(){
@@ -141,6 +143,9 @@ class UsuarioController {
         usuario1.departamento = departamento1
         usuario1.save()
         redirect (action: "asignar_departamento")
+
+    }
+    def contactosPorDepartamento(){
 
     }
 }

@@ -1,3 +1,4 @@
+<asset:javascript src="jquery-2.2.0.min.js"/>
 <div class="container">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -27,6 +28,7 @@
                             <ul class="dropdown-menu">
                                 <li><g:link controller="contacto" action="create">Crear Contacto</g:link> </li>
                                 <li><g:link controller="contacto" action="index">Ver Contactos</g:link> </li>
+                                <li><g:link controller="contacto" action="graficos">Gráficos</g:link> </li>
 
                             </ul>
                         </li>
@@ -50,6 +52,5 @@
         </div><!--/.container-fluid -->
     </nav>
 </div>
-<script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
 </body>

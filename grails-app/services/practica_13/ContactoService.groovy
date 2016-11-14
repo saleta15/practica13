@@ -30,4 +30,6 @@ class ContactoService {
         contacto.save flush:true
         return 1
     }
+
+
 }

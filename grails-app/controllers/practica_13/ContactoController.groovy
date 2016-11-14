@@ -103,4 +103,8 @@ class ContactoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def graficos(){
+
+    }
 }
